@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+
+<title>
+Animated random walk jep
+</title>
+
+</head>
+
+
+
+
+
+<body>
+
+<link rel="stylesheet" href="css/style.css">
+ 
+<svg  viewBox="0 0 246 144" width="246mm" height="143.747mm"  style="border:solid 0.05mm" >
+
+<path d="M2.01659 2.01659, L 80.6636 138.237, L237.958 138.237, L159.311 2.01659, Z  " style="stroke:white; fill:none; stroke-width:0.05mm";/>
+
+
+<!-- The line below is the substrate layer B which is later changed by the Javascript -->
+
+<g id="substrate layer B"></g>
+
+<!-- The line below is the substrate layer C which is later changed by the Javascript -->
+
+<g id="substrate layer C"></g>
+
+ 
+<g id="write the legend" style="font-size:4pt;font-family:Helvetica" >
+
+<text x="202.311"  y="5" >
+ Number of stays: 
+</text>
+
+<circle cx="205.133" cy="11" r="1.41111"  style="stroke:rgb(0,0,0);fill:rgb(0,0,0); "  />
+<text x="210.777"  y="12.4111" >
+  1 
+</text>
+
+<circle cx="205.133" cy="17" r="1.41111"  style="stroke:rgb(145,42,42);fill:rgb(145,42,42); "  />
+<text x="210.777"  y="18.4111" >
+  2 
+</text>
+
+<circle cx="205.133" cy="23" r="1.41111"  style="stroke:rgb(194,34,11);fill:rgb(194,34,11); "  />
+<text x="210.777"  y="24.4111" >
+  3 
+</text>
+
+<circle cx="205.133" cy="29" r="1.41111"  style="stroke:rgb(2444,34,11);fill:rgb(2444,34,11); "  />
+<text x="210.777"  y="30.4111" >
+  4 
+</text>
+
+<circle cx="205.133" cy="35" r="1.41111"  style="stroke:rgb(255,44,84);fill:rgb(255,44,84); "  />
+<text x="210.777"  y="36.4111" >
+  5 
+</text>
+
+<circle cx="205.133" cy="41" r="1.41111"  style="stroke:rgb(255,114,0);fill:rgb(255,114,0); "  />
+<text x="210.777"  y="42.4111" >
+  6 
+</text>
+
+<circle cx="205.133" cy="47" r="1.41111"  style="stroke:rgb(255,165,0);fill:rgb(255,165,0); "  />
+<text x="210.777"  y="48.4111" >
+ 7</text>
+
+<circle cx="205.133" cy="53" r="1.41111"  style="stroke:rgb(218,165,32);fill:rgb(218,165,32); "  />
+<text x="210.777"  y="54.4111" >
+  8 
+</text>
+
+<circle cx="205.133" cy="59" r="1.41111"  style="stroke:rgb(255,215,0);fill:rgb(255,215,0); "  />
+<text x="210.777"  y="60.4111" >
+ > 8 
+</text>
+
+</g>
+
+
+ <g id="write the left hand legend" style="font-size:4pt;font-family:Helvetica" >
+
+<!-- Write the symbol for the start position in the left hand legend  -->
+
+<circle cx="1.41111" cy="101.747" r="1.41111" style=" stroke:rgb(0,0,0); stroke-width:0.2; fill:rgb(255,255,255);stroke-opacity:1.0;fill-opacity:1.0; "  />
+<line x1="0" y1="101.747" x2="2.82222" y2="101.747"  style="stroke:black; stroke-width:0.2; stroke-opacity:1.0" /> 
+<text x="5.64444"  y="103.158" >
+ start
+</text>
+<text x="21"  y="103.158" >
+ position
+</text>
+
+<!-- Write the symbol for the actual position in the left hand legend -->
+
+<circle cx="1.41111" cy="107.747" r="1.41111" style=" stroke:rgb(0,0,0); stroke-width:0.2; fill:rgb(255,255,255);stroke-opacity:1.0;fill-opacity:1.0; "  />
+<line x1="0.413305" y1="106.749" x2="2.40892" y2="108.745"  style="stroke:black; stroke-width:0.2; stroke-opacity:1.0" /> 
+<line x1="0.413305" y1="108.745" x2="2.40892" y2="106.749"  style="stroke:black; stroke-width:0.2; stroke-opacity:1.0" /> 
+<text x="5.64444"  y="109.158" >
+ actual
+</text>
+
+
+
+<text x="21"  y="109.158" >
+ position
+</text>
+
+<circle class="B_circle fade-in four "  cx="1.41111" cy="113.747" r="1.41111" ; />
+
+<text class="fade-in four" x="5.64444"  y="115.158" >
+ layer B
+</text>
+
+
+
+<circle class="C_circle fade-in ten "  cx="1.41111" cy="119.747" r="1.41111" ; />
+
+<text class="fade-in ten" x="5.64444"  y="121.158" >
+ layer C
+</text>
+
+
+
+</g> 
+
+
+
+</svg>
+
+<script>
+	 var the_B_circles_svg="";
+
+		 function write_B_circles(NR,NC){
+		 var sphere_radius = 2.01659
+		 var x_coordinate=0.0;
+		 var y_coordinate=0.0;
+
+ 		 for(var i=1; i<=NR; i++ ) {
+ 		 for(var j=1; j<=NC; j++ ) {
+			 x_coordinate=sphere_radius+((j-1)+(i-1)/2.0)*(sphere_radius*2)
+			 y_coordinate=sphere_radius+1*((i-1)*sphere_radius*Math.sqrt(3))
+		 the_B_circles_svg += "<circle class=\"B_circle fade-in four\" cx=\"" 
+ 		 the_B_circles_svg += x_coordinate
+		 the_B_circles_svg += "\"  cy=\"" 
+ 		 the_B_circles_svg += y_coordinate
+		 the_B_circles_svg += "\"  r=\"" 
+ 		 the_B_circles_svg +=  sphere_radius
+		 the_B_circles_svg += "\"  />\n"
+		}
+	}
+}
+
+
+write_B_circles(40,40)
+document.getElementById("substrate layer B").innerHTML = the_B_circles_svg; 
+
+	 var the_C_circles_svg="";
+
+		 function write_C_circles(NR,NC){
+		 var sphere_radius = 2.01659
+		 var x_coordinate=0.0;
+		 var y_coordinate=0.0;
+		 var delta_x=2.01659;
+
+		 var delta_y=1.16428;
+
+ 		 for(var i=1; i<=NR; i++ ) {
+ 		 for(var j=1; j<=NC; j++ ) {
+			 x_coordinate=delta_x+sphere_radius+((j-1)+(i-1)/2.0)*(sphere_radius*2)
+			 y_coordinate=delta_y+sphere_radius+1*((i-1)*sphere_radius*Math.sqrt(3))
+		 the_C_circles_svg += "<circle class=\"C_circle fade-in ten\" cx=\"" 
+ 		 the_C_circles_svg += x_coordinate
+		 the_C_circles_svg += "\"  cy=\"" 
+ 		 the_C_circles_svg += y_coordinate
+		 the_C_circles_svg += "\"  r=\"" 
+ 		 the_C_circles_svg +=  sphere_radius
+		 the_C_circles_svg += "\"  />\n"
+		}
+	}
+}
+
+
+write_C_circles(40,40)
+document.getElementById("substrate layer C").innerHTML = the_C_circles_svg; 
+
+</script>
+
+
+
+
+
+</body>
+</html>

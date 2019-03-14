@@ -3,7 +3,7 @@ var NUMBER_OF_ROWS = 40  // nur gerade Zahlen
 
 var MAX_NUMBER_OF_ROWS_ALL_CIRCLES = 12
 
-var NUMBER_OF_DIFFUSION_STEPS = 1
+var NUMBER_OF_DIFFUSION_STEPS = 100
 
 var NUMBER_OF_COLUMNS = NUMBER_OF_ROWS;
 
@@ -1828,7 +1828,7 @@ function perform_one_diffusion_step(ka){
 	mc_time += single_adsorbate_diffusion_time;
 
 
-	if(ka == 1){
+	if(ka == 5){
 
 		console.log(one_step_only);
 
@@ -1903,7 +1903,7 @@ perform_diffusion()
 //console.log(the_adsorbate_trace);
 
 
-// document.getElementById("the trace of the adsorbate").innerHTML = the_adsorbate_trace;
+ document.getElementById("the trace of the adsorbate").innerHTML = the_adsorbate_trace;
 
 
 

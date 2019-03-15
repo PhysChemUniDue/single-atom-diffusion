@@ -1,11 +1,11 @@
 
-var NUMBER_OF_ROWS = 100  // nur gerade Zahlen
+var NUMBER_OF_ROWS = 100 // nur gerade Zahlen
 
 var MAX_NUMBER_OF_ROWS_ALL_CIRCLES = 12
 
 var DISPLAY_TIME_FOR_ONE_DIFFUSION_STEP = 0.02
 
-var NUMBER_OF_DIFFUSION_STEPS = 2300
+var NUMBER_OF_DIFFUSION_STEPS = 1300
 
 var DURATION_DIFFUSION = DISPLAY_TIME_FOR_ONE_DIFFUSION_STEP * NUMBER_OF_DIFFUSION_STEPS
 
@@ -36,7 +36,7 @@ var DURATION_CONSTRUCTION_LAYER_C = 2
 
 var START_TIME_SHOWING_START_CIRCLE_LEFT_LEGEND = START_TIME_SHOWING_B_LEFT_LEGEND + DURATION_CONSTRUCTION_LAYER_B + DURATION_CONSTRUCTION_LAYER_C
 
-var START_TIME_ANIMATION_START_CIRCLE_SCALE = START_TIME_SHOWING_START_CIRCLE_LEFT_LEGEND + 2
+var START_TIME_ANIMATION_START_CIRCLE_SCALE = START_TIME_SHOWING_START_CIRCLE_LEFT_LEGEND
 
 var DURATION_SCALE_START_CIRCLE = 2
 
@@ -1594,9 +1594,9 @@ function perform_one_diffusion_step(ka){
 
 
 
-	the_adsorbate_trace += "<g style=\"visibility:hidden\">\n"
+	the_adsorbate_trace += "<g style=\"visibility:hidden\" >\n"
 
-		one_step_only = "<g style=\"visibility:hidden\">\n"
+	one_step_only = "<g style=\"visibility:hidden\" >\n"
 
 	the_adsorbate_trace += "<!-- diffusion step"
 
@@ -1676,9 +1676,9 @@ function perform_one_diffusion_step(ka){
 
 					   one_step_only += sphere_radius
 
-				the_adsorbate_trace += "\"/>\n"
+			the_adsorbate_trace += "\" />\n"
 
-					   one_step_only += "\"/>\n"
+					   one_step_only += "\" />\n"
 
 
 			the_adsorbate_trace += "<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\" begin=\""

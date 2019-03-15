@@ -1,9 +1,14 @@
 
-var NUMBER_OF_ROWS = 40  // nur gerade Zahlen
+var NUMBER_OF_ROWS = 400  // nur gerade Zahlen
 
 var MAX_NUMBER_OF_ROWS_ALL_CIRCLES = 12
 
-var NUMBER_OF_DIFFUSION_STEPS = 300
+var DISPLAY_TIME_FOR_ONE_DIFFUSION_STEP = 0.01
+
+var NUMBER_OF_DIFFUSION_STEPS = 3300
+
+var DURATION_DIFFUSION = DISPLAY_TIME_FOR_ONE_DIFFUSION_STEP * NUMBER_OF_DIFFUSION_STEPS
+
 
 var NUMBER_OF_COLUMNS = NUMBER_OF_ROWS;
 
@@ -49,10 +54,10 @@ var DURATION_MOVING_START_CIRCLE_IN = 4 // not used
 
 var START_TIME_FOR_DIFFUSION = START_TIME_ANIMATION_START_CIRCLE_TRANSLATE + DURATION_TRANSLATE_START_CIRCLE
 
-var DURATION_DIFFUSION = 20
 
 
-var DISPLAY_TIME_FOR_ONE_DIFFUSION_STEP = Math.round(DURATION_DIFFUSION / NUMBER_OF_DIFFUSION_STEPS*100)/100
+
+
 
 
 
@@ -923,10 +928,6 @@ var definition_start_circle = ""
 
 function define_start_circle(){
 
-	definition_start_circle += "<defs>\n"
-
-	definition_start_circle += "<g id=\"start circle\" style=\"stroke:rgb(0,0,255); stroke-width:0.4; fill:rgb(255,255,255);opacity:1.0;\" >\n"
-
 	definition_start_circle += "<circle cx=\"0.0\" cy=\"0.0\" r=\""
 
 	definition_start_circle += sphere_radius
@@ -953,20 +954,15 @@ function define_start_circle(){
 
 	definition_start_circle += "\" y2=\"0\"/>\n"
 
-	definition_start_circle += "</g>\n"
-
-	definition_start_circle += "</defs>\n\n"
-
 }
 
 define_start_circle();
-
 
 console.log("check the definition of the start circle here\n")
 
 console.log(definition_start_circle)
 
-document.getElementById("definition start circle").innerHTML = definition_start_circle
+document.getElementById("start circle").innerHTML = definition_start_circle
 
 
 
@@ -975,9 +971,9 @@ var definition_actual_circle = ""
 
 function define_actual_circle(){
 
-	definition_actual_circle += "<defs>\n"
+//	definition_actual_circle += "<defs>\n"
 
-	definition_actual_circle += "<g id=\"actual circle\" style=\"stroke:rgb(0,0,0); stroke-width:0.4; fill:rgb(255,255,255);opacity:1.0;\" transform=\"rotate(45,0,0)\" >\n"
+	//definition_actual_circle += "<g id=\"actual circle\" style=\"stroke:rgb(0,0,0); stroke-width:0.4; fill:rgb(255,255,255);opacity:1.0;\" transform=\"rotate(45,0,0)\" >\n"
 
 	definition_actual_circle += "<circle cx=\"0.0\" cy=\"0.0\" r=\""
 
@@ -1005,9 +1001,9 @@ function define_actual_circle(){
 
 	definition_actual_circle += "\" y2=\"0\"/>\n"
 
-	definition_actual_circle += "</g>\n"
+	//definition_actual_circle += "</g>\n"
 
-	definition_actual_circle += "</defs>\n\n"
+//	definition_actual_circle += "</defs>\n\n"
 
 }
 
@@ -1018,7 +1014,7 @@ console.log("check the definition of the actual circle here \n");
 
 console.log(definition_actual_circle)
 
-//document.getElementById("definition actual circle").innerHTML = definition_actual_circle
+document.getElementById("actual circle").innerHTML = definition_actual_circle
 
 
 
@@ -1148,33 +1144,7 @@ function write_permanent_start_position(){
 	the_permanent_start_position += "<g id=\"permanent start circle in the center\" style=\"stroke:rgb(0,0,255); stroke-width:0.4; fill:rgb(255,255,255); visibility:hidden; \" >\n"
 
 
-	the_permanent_start_position += "<circle cx=\"0.0\" cy=\"0.0\" r=\""
-
-	the_permanent_start_position += sphere_radius
-
-	the_permanent_start_position += "\" /> \n"
-
-	the_permanent_start_position += "<line x1=\"0\" y1=\""
-
-	the_permanent_start_position += sphere_radius
-
-	the_permanent_start_position += "\" x2=\"0\" y2=\"-"
-
-	the_permanent_start_position += sphere_radius
-
-	the_permanent_start_position += "\"/>\n"
-
-	the_permanent_start_position += "<line x1=\"-"
-
-	the_permanent_start_position += sphere_radius
-
-	the_permanent_start_position +="\" y1=\"0\"  x2=\""
-
-	the_permanent_start_position += sphere_radius
-
-	the_permanent_start_position += "\" y2=\"0\"/>\n"
-
-	the_permanent_start_position += "</g>\n"
+	the_permanent_start_position += "<use xlink:href=\" \" > \n"
 
 	the_permanent_start_position += "</defs>\n\n"
 
@@ -1517,10 +1487,6 @@ function perform_one_diffusion_step(ka){
 		i_final=i_periodic(i_initial);
 		j_final=j_periodic(j_initial+1);
 
-		number_of_visits_tensor[ka][i_final][j_final] =  number_of_visits_tensor[ka-1][i_final][j_final] +1 ;
-
-
-		sum_detected_diffusion_events += 1
 
 		diff1 +=1
 
@@ -1537,9 +1503,6 @@ function perform_one_diffusion_step(ka){
 		j_final=j_periodic(j_initial+1);
 
 
-		number_of_visits_tensor[ka][i_final][j_final] =  number_of_visits_tensor[ka-1][i_final][j_final] +1 ;
-
-		sum_detected_diffusion_events += 1
 
 		diff2 +=1
 
@@ -1557,10 +1520,6 @@ function perform_one_diffusion_step(ka){
 		j_final=j_periodic(j_initial);
 
 
-		number_of_visits_tensor[ka][i_final][j_final] =  number_of_visits_tensor[ka-1][i_final][j_final] +1 ;
-
-		sum_detected_diffusion_events += 1
-
 		diff3 +=1
 
 
@@ -1575,11 +1534,6 @@ function perform_one_diffusion_step(ka){
 		i_final=i_periodic(i_initial);
 		j_final=j_periodic(j_initial-1);
 
-
-
-		number_of_visits_tensor[ka][i_final][j_final] =  number_of_visits_tensor[ka-1][i_final][j_final] +1 ;
-
-		sum_detected_diffusion_events += 1
 
 		diff4 +=1
 
@@ -1596,9 +1550,6 @@ function perform_one_diffusion_step(ka){
 		j_final=j_periodic(j_initial-1);
 
 
-		number_of_visits_tensor[ka][i_final][j_final] =  number_of_visits_tensor[ka-1][i_final][j_final] +1 ;
-
-
 		diff5 +=1
 
 
@@ -1612,15 +1563,20 @@ function perform_one_diffusion_step(ka){
 		i_final=i_periodic(i_initial+1);
 		j_final=j_periodic(j_initial);
 
-		number_of_visits_tensor[ka][i_final][j_final] =  number_of_visits_tensor[ka-1][i_final][j_final] +1 ;
 
-
-		sum_detected_diffusion_events += 1
 
 		diff6 +=1
 
 
 	}
+
+
+		/* very importatant */
+
+
+
+
+	number_of_visits_tensor[ka][i_final][j_final] += 1;
 
 
 
@@ -1656,31 +1612,18 @@ function perform_one_diffusion_step(ka){
 
 
 
+		if(i_initial == Math.round(NUMBER_OF_ROWS / 2 ) && j_initial == Math.round(NUMBER_OF_ROWS /2 ) )  {
 
-	for(var i=0; i<= NUMBER_OF_ROWS; i++){
+			// this if is for nor not to overwrite the start point in the middle
 
-			// this shows the locations where and how often the atom has been before
+		the_adsorbate_trace += "<!-- I was in center, so  circle for number of stays -->\n"
 
-		for(var j=0; j<= NUMBER_OF_ROWS; j++){
+		one_step_only += "<!-- I was in center, so no circle for number of stays -->\n"
 
-			if(  number_of_visits_tensor[ka-1][i][j] > 0 ){
-
-
-				if(i == Math.round(NUMBER_OF_ROWS/2)  && j == Math.round(NUMBER_OF_ROWS/2 ) ) {
-
-						the_adsorbate_trace += "";
-
-							one_step_only += "";
-
-				   }
-
-				   else {
+			}
 
 
-				x_coordinate = Math.round(( delta_x + delta_x + sphere_radius+((j-1)+(i-1)/2.0)*(sphere_radius*2) ) * 100 ) / 100
-
-				y_coordinate = Math.round(( delta_y + delta_y + sphere_radius+( (i-1) * sphere_radius*Math.sqrt(3)) ) * 100 ) / 100
-
+		else{
 
 
 				the_adsorbate_trace += "<circle class=\"c"
@@ -1689,16 +1632,16 @@ function perform_one_diffusion_step(ka){
 
 
 
-				if (number_of_visits_tensor[ka-1][i][j] <=9)
+				if (number_of_visits_tensor[ka-1][i_initial][j_initial] <=9)
 				{
 
-					the_adsorbate_trace +=  Math.round(number_of_visits_tensor[ka-1][i][j])
+					the_adsorbate_trace +=  Math.round(number_of_visits_tensor[ka-1][i_initial][j_initial])
 
-						one_step_only += Math.round(number_of_visits_tensor[ka-1][i][j])
+						one_step_only += Math.round(number_of_visits_tensor[ka-1][i-j_initial][j_initial])
 
 				}
 
-				if (number_of_visits_tensor[ka-1][i][j] > 9)
+				if (number_of_visits_tensor[ka-1][i_initial][j_initial] > 9)
 				{
 
 					the_adsorbate_trace +=  9
@@ -1712,17 +1655,17 @@ function perform_one_diffusion_step(ka){
 
 					   one_step_only += "\" cx=\""
 
-				the_adsorbate_trace += x_coordinate
+				the_adsorbate_trace += x_coordinate_initial
 
-					   one_step_only += x_coordinate
+					   one_step_only += x_coordinate_initial
 
 				the_adsorbate_trace += "\"  cy=\""
 
 					   one_step_only += "\"  cy=\""
 
-				the_adsorbate_trace += y_coordinate
+				the_adsorbate_trace += y_coordinate_initial
 
-					   one_step_only += y_coordinate
+					   one_step_only += y_coordinate_initial
 
 				the_adsorbate_trace += "\" r=\""
 
@@ -1737,26 +1680,44 @@ function perform_one_diffusion_step(ka){
 
 					   one_step_only += "\"/>\n"
 
-			}
-				}
 
-			}
-	}
+			the_adsorbate_trace += "<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\" begin=\""
+
+			one_step_only += "<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\" begin=\""
+
+			the_adsorbate_trace += start_time_showing_actual_circle
+
+			one_step_only += start_time_showing_actual_circle
+
+			the_adsorbate_trace += "s\" fill=\"freeze\" />\n"
+
+			one_step_only += "s\" fill=\"freeze\" />\n"
 
 
 
 
-	if(i == Math.round(NUMBER_OF_ROWS / 2 ) && j == Math.round(NUMBER_OF_ROWS /2 ) )  {
+
+		}
+
+
+
+
+
+		if(i_final == Math.round(NUMBER_OF_ROWS / 2 ) && j_final == Math.round(NUMBER_OF_ROWS /2 ) )  {
 
 			// this if is for nor not to overwrite the start point in the middle
 
-		   the_adsorbate_trace += ""
+		the_adsorbate_trace += "<!-- I was in center, so no actual circle -->\n"
 
-			one_step_only += ""
+		one_step_only += "<!-- I was in center, so no actual circle -->\n"
 
-	   }
+		}
 
-	   else{
+		else{
+
+
+
+
 
 	   // this shows the actual position
 
@@ -1807,19 +1768,25 @@ function perform_one_diffusion_step(ka){
 		one_step_only += DISPLAY_TIME_FOR_ONE_DIFFUSION_STEP
 	}
 
-
-	if(ka == NUMBER_OF_DIFFUSION_STEPS)
-	{
-
-		the_adsorbate_trace += 10
-
-		one_step_only += 10
-
-	}
+	if(ka < NUMBER_OF_DIFFUSION_STEPS){
 
 	the_adsorbate_trace += "s\" />\n"
 
 	one_step_only += "s\" />\n"
+
+	}
+
+
+	if(ka == NUMBER_OF_DIFFUSION_STEPS){
+
+		the_adsorbate_trace += "s\" fill=\"freeze\"/>\n"
+
+		one_step_only += "s\" fill=\"freeze\" />\n"
+
+	}
+
+
+
 
 	the_adsorbate_trace += "</g>\n\n\n"
 
@@ -1838,6 +1805,8 @@ function perform_one_diffusion_step(ka){
 
 
 }
+
+
 
 
 
@@ -1898,9 +1867,9 @@ perform_diffusion()
 
 	//console.log(number_of_visits_tensor);
 
-	//console.log("this is the adsorbate trace\n\n\n\n\n");
+// console.log("this is the adsorbate trace\n\n\n\n\n");
 
-//console.log(the_adsorbate_trace);
+// console.log(the_adsorbate_trace);
 
 
  document.getElementById("the trace of the adsorbate").innerHTML = the_adsorbate_trace;

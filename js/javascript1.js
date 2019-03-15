@@ -1,5 +1,5 @@
 
-var NUMBER_OF_ROWS = 400  // nur gerade Zahlen
+var NUMBER_OF_ROWS = 200  // nur gerade Zahlen
 
 var MAX_NUMBER_OF_ROWS_ALL_CIRCLES = 12
 

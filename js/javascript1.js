@@ -1,11 +1,11 @@
 
 var NUMBER_OF_ROWS = 100 // nur gerade Zahlen
 
-var MAX_NUMBER_OF_ROWS_ALL_CIRCLES = 12
+var MAX_NUMBER_OF_ROWS_ALL_CIRCLES = 120
 
 var DISPLAY_TIME_FOR_ONE_DIFFUSION_STEP = 0.02
 
-var NUMBER_OF_DIFFUSION_STEPS = 1300
+var NUMBER_OF_DIFFUSION_STEPS = 30
 
 var DURATION_DIFFUSION = DISPLAY_TIME_FOR_ONE_DIFFUSION_STEP * NUMBER_OF_DIFFUSION_STEPS
 
@@ -54,6 +54,8 @@ var DURATION_MOVING_START_CIRCLE_IN = 4 // not used
 
 var START_TIME_FOR_DIFFUSION = START_TIME_ANIMATION_START_CIRCLE_TRANSLATE + DURATION_TRANSLATE_START_CIRCLE
 
+var TIME_DIFFUSION_FINISHED = START_TIME_FOR_DIFFUSION + DURATION_DIFFUSION
+
 
 
 
@@ -69,6 +71,12 @@ var y_coordinate_left_legend_start_position = 105;
 var y_coordinate_left_legend_actual_position = 113;
 
 var sphere_radius_legend = 1.5;
+
+
+var y_coordinate_chemical_education = 125;
+
+
+
 
 
 var initial_i_coordinate_adsorbate = NUMBER_OF_ROWS/2;
@@ -899,6 +907,32 @@ function write_the_left_bottom_legend()
 	the_left_bottom_legend += DURATION_DIFFUSION
 
 	the_left_bottom_legend += "\"s fill=\"freeze\" />\n"
+
+	the_left_bottom_legend += "</g>\n\n"
+
+
+
+	the_left_bottom_legend += "<g id=\"j_chem_edu\" style=\"visibility:hidden\" >"
+
+	the_left_bottom_legend += "<a xlink:href=\"https://pubs.acs.org/doi/abs/10.1021/acs.jchemed.6b01008\">"
+
+	the_left_bottom_legend += "<image xlink:href=\"svg/journal_chemical_education.gif\" height=\"8.4\" width=\"50\" transform=\"translate("
+
+	the_left_bottom_legend += x_margin_left_legend
+
+	the_left_bottom_legend += ","
+
+	the_left_bottom_legend += y_coordinate_chemical_education
+
+	the_left_bottom_legend += ") scale(1.3)\" /> \n"
+
+	the_left_bottom_legend += "</a>\n"
+
+	the_left_bottom_legend += "<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\" begin=\""
+
+	the_left_bottom_legend += TIME_DIFFUSION_FINISHED
+
+	the_left_bottom_legend += "s\" fill=\"freeze\" />\n"
 
 	the_left_bottom_legend += "</g>\n\n"
 
